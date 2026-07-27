@@ -17,16 +17,4 @@ const server = app.listen(PORT, () => {
   console.log("─────────────────────────────────────────");
 });
 
-// ─── Cierre limpio ─────────────────────────────────────────────────────────────
-const shutdown = (signal) => {
-  console.log(`\n⚠️  ${signal} recibido. Cerrando servidor...`);
-  server.close(() => {
-    console.log("✅ Servidor cerrado correctamente.");
-    process.exit(0);
-  });
-};
-
-process.on("SIGTERM", () => shutdown("SIGTERM"));
-process.on("SIGINT", () => shutdown("SIGINT"));
-
 export default server;
