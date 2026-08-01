@@ -1,0 +1,12 @@
+// prisma/models/enums.prisma
+enum UserStatus {
+    ACTIVE
+    INACTIVE
+    SUSPENDED
+}
+
+enum TenantStatus {
+    ACTIVE
+    INACTIVE
+    SUSPENDED
+}

@@ -1,0 +1,13 @@
+// prisma/models/audit-log.prisma
+model AuditLog {
+    id        String   @id @default(uuid()) @db.Uuid
+    tenantId  String   @map("tenant_id") @db.Uuid
+    tenant    Tenant   @relation(fields: [tenantId], references: [id])
+    action    String
+    entity    String?
+    entityId  String?  @map("entity_id")
+    metadata  Json?
+    createdAt DateTime @default(now()) @map("created_at")
+
+    @@map("audit_logs")
+}

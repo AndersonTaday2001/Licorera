@@ -1,0 +1,18 @@
+// prisma/models/tenant.prisma
+model Tenant {
+    id           String       @id @default(uuid()) @db.Uuid
+    name         String       @db.VarChar(150)
+    businessName String?      @map("business_name") @db.VarChar(200)
+    ruc          String       @unique @db.VarChar(13)
+    email        String?      @db.VarChar(150)
+    phone        String?      @db.VarChar(20)
+    address      String?
+    status       TenantStatus @default(ACTIVE)
+    users        User[]
+    roles        Role[]
+    auditLogs    AuditLog[]
+    createdAt    DateTime     @default(now()) @map("created_at")
+    updatedAt    DateTime     @updatedAt @map("updated_at")
+
+    @@map("tenants")
+}

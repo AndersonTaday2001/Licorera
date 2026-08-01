@@ -1,0 +1,14 @@
+// prisma/models/role.prisma
+model Role {
+    id          String           @id @default(uuid()) @db.Uuid
+    tenantId    String?          @map("tenant_id") @db.Uuid
+    tenant      Tenant?          @relation(fields: [tenantId], references: [id])
+    name        String
+    description String?
+    isSystem    Boolean          @default(false) @map("is_system")
+    users       UserRole[]
+    permissions RolePermission[]
+
+    @@unique([tenantId, name])
+    @@map("roles")
+}
