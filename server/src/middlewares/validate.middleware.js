@@ -4,7 +4,7 @@ export function validate(schema, source = "body") {
   return (req, res, next) => {
     const result = schema.safeParse(req[source]);
     if (!result.success) {
-      const error = result.error.flatten().fieldErrors;
+      const errors = result.error.flatten().fieldErrors;
       return next(new BadRequestError("Datos invalidos", errors));
     }
     req[source] = result.data;
